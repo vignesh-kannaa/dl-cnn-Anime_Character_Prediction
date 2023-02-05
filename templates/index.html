@@ -1,0 +1,113 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .container {
+        margin-left: 5%;
+      }
+      .row {
+        flex-wrap: unset;
+        margin: 0;
+        padding: 15px 0;
+      }
+      .result {
+        margin-top: 5%;
+        border-radius: 30px;
+        padding: 1% 0 0 5%;
+        width: 500px;
+        height: 65px;
+        background: #f4f2fa;
+        color: #4d24a5;
+      }
+      input[type="file"] {
+        display: none;
+      }
+      .custom-file-upload {
+        width: 250px;
+        height: 62px;
+        background: #4d24a5;
+        border-radius: 29px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-9">
+          <div class="row">
+            <img
+              src="/static/image/luffy-logo.png"
+              alt="logo"
+              style="height: 50px"
+            />
+          </div>
+          <div class="row">
+            <h2>Let me tell you what the character's name is. Let's do it?</h2>
+          </div>
+          <div class="row">
+            <div class="col">
+              <form
+                action="/predict"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <label class="custom-file-upload">
+                  <input
+                    type="file"
+                    id="myFile"
+                    name="imagefile"
+                    onchange="form.submit()"
+                  />
+                  <h3 style="color: white; padding: 5px 9px">Upload Image</h3>
+                </label>
+              </form>
+            </div>
+            <div class="col-6">
+              {% if image %}
+              <img
+                src="{{ image }}"
+                alt="given image"
+                style="height: 200px; width: 200px; max-width: 300px"
+              />
+              <h1 class="result">{{prediction}}</h1>
+              {% else %}
+              <img
+                src="/static/image/luffy.png"
+                alt="banner-image"
+                style="height: 400px; width: 200px; max-width: 300px"
+              />
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <img src="/static/image/bannerimg.png" style="height: 80%" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
